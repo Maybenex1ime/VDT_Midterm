@@ -1,0 +1,9 @@
+# roles/api/vars/main.yml
+
+docker_network_name: domanh
+api_image_name: maybenex1ime/flask-api
+api_image_tag: latest
+api_container_name: api
+api_hostname: api
+api_ports:
+  - "5000:5000"

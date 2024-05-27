@@ -1,0 +1,9 @@
+# roles/web/vars/main.yml
+
+docker_network_name: domanh
+web_image_name: maybenex1ime/react-web
+web_image_tag: latest
+web_container_name: frontend
+web_hostname: frontend
+web_ports:
+  - "3000:3000"

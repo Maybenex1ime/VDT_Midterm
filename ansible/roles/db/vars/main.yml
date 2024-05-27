@@ -1,0 +1,12 @@
+---
+# vars file for db
+env: default
+db:
+  default:
+    db_host: db.home.arpa
+    db_user: manh
+    db_user_passw: manh
+    db_name: users
+    db_port: 8191
+  prod:
+  test:
