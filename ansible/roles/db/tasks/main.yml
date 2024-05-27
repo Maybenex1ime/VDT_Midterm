@@ -1,5 +1,36 @@
-- name: start database
-  hosts: dbs
-  remote_user: ubuntu
-  roles:
-    - roles/db
+- name: Install required packages
+  yum:
+    name: 
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    state: present
+
+- name: Add Docker repository
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: Ensure Docker is installed
+  yum:
+    name: docker-ce
+    state: present
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Pull and run the DB Docker image
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ docker_image }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ port_mapping }}"
+    env:
+      POSTGRES_USER: "{{ environment_variables.POSTGRES_USER }}"
+      POSTGRES_PASSWORD: "{{ environment_variables.POSTGRES_PASSWORD }}"
+      POSTGRES_DB: "{{ environment_variables.POSTGRES_DB }}"

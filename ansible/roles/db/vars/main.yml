@@ -1,12 +1,7 @@
----
-# vars file for db
-env: default
-db:
-  default:
-    db_host: db.home.arpa
-    db_user: manh
-    db_user_passw: manh
-    db_name: users
-    db_port: 8191
-  prod:
-  test:
+docker_image: postgres:latest
+container_name: db_container
+port_mapping: "5432:5432"
+environment_variables:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: flask_db

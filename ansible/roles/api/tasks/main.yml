@@ -1,24 +1,36 @@
 # roles/api/tasks/main.yml
 
-- name: Check if docker network exists
-  docker_network_info:
-    name: "{{ docker_network_name }}"
-  register: docker_network
-  become: true
-
-- name: Create docker network
-  docker_network:
-    name: "{{ docker_network_name }}"
+- name: Install required packages
+  yum:
+    name: 
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
     state: present
-  when: docker_network.exists == false
-  become: true
 
-- name: Run docker image {{ api_image_name }}:{{ api_image_tag }}
+- name: Add Docker repository
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: Ensure Docker is installed
+  yum:
+    name: docker-ce
+    state: present
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Pull and run the API Docker image
   docker_container:
-    name: "{{ api_container_name }}"
-    image: "{{ api_image_name }}:{{ api_image_tag }}"
-    restart_policy: unless-stopped
-    networks:
-      - name: "{{ docker_network_name }}"
-    hostname: "{{ api_hostname }}"
-    ports: "{{ api_ports }}"
+    name: "{{ container_name }}"
+    image: "{{ docker_image }}"
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ port_mapping }}"
+    env:
+      DATABASE_URL: "{{ environment_variables.DATABASE_URL }}"
