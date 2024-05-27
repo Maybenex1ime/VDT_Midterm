@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+push: # Trigger on push events
+    branches:
+    - "*" # All branches
+pull_request: # Trigger on pull request events
+    branches:
+    - main
+
+env:
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{github.repository}}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+        uses: actions/checkout@v2
+
+    - name: Create fresh env to test
+        run: docker-compose -f docker-compose.yml up -d sqlite3
+
+    - name: Install local dependencies
+        run: pip install -r /api/requirements.txt
+
+    - name: Run unit test
+        run: pytest api/text
+
+ 
+        tags: tienlong1106/git_cicd_api:latest
