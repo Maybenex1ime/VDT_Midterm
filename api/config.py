@@ -1,0 +1,3 @@
+SECRET_KEY = "library_api"
+SQLALCHEMY_DATABASE_URI = 'sqlite:///students3.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False

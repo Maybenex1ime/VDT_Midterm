@@ -1,0 +1,164 @@
+/* Styling for text list */
+.text-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    /* Slightly smaller font for better overall balance */
+    margin: 20px 0 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FF4500;
+    /* OrangeRed for a vibrant look */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow */
+}
+
+/* Header styling */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 25px;
+    /* Slightly increased margin */
+}
+
+/* Container for add icon */
+.add-icon-container {
+    position: absolute;
+    right: 15px;
+    /* Reduced right offset for a sleeker look */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Add icon styling */
+.add-icon {
+    font-size: 28px;
+    /* Increased font size for better visibility */
+    cursor: pointer;
+    color: #228B22;
+    /* ForestGreen for a more subdued look */
+}
+
+/* Table container styling */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    /* Added margin for spacing */
+}
+
+/* Table cell styling */
+th,
+td {
+    padding: 15px;
+    /* Increased padding for better spacing */
+    text-align: left;
+    border: 1px solid #ccc;
+    /* Slightly darker border for contrast */
+}
+
+/* Header cell styling */
+th {
+    background-color: #FFD700;
+    /* Gold for a striking header */
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    /* Dark text for readability */
+}
+
+/* Even row background color */
+tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+    /* Very light gray for subtle stripe */
+}
+
+/* Row hover effect */
+tbody tr:hover {
+    background-color: #FFD700;
+    /* Match header background */
+}
+
+/* Footer row styling */
+tfoot tr:last-child {
+    background-color: #fafafa;
+    /* Very light gray for footer */
+    font-weight: bold;
+}
+
+/* First cell in footer row */
+tfoot td:first-child {
+    border-top: 2px solid #ccc;
+    /* Match cell borders */
+}
+
+/* Button row styling */
+.button-row {
+    display: flex;
+    /* Use flexbox for better alignment */
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    /* Added margin for spacing */
+}
+
+/* Button styling */
+.button-row button {
+    width: 60px;
+    /* Increased width */
+    padding: 8px;
+    /* Added padding */
+    margin: 0 5px;
+    /* Uniform margin */
+    cursor: pointer;
+    border-radius: 8px;
+    /* More rounded corners */
+    color: white;
+    /* White text */
+    border: none;
+    /* Remove border */
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+/* Edit button styling */
+.edit {
+    background-color: #4682B4;
+    /* SteelBlue for a calmer blue */
+}
+
+/* Edit button hover effect */
+.edit:hover {
+    background-color: #5A9BD4;
+    /* Lighter blue on hover */
+}
+
+/* Delete button styling */
+.delete {
+    background-color: #B22222;
+    /* FireBrick red */
+}
+
+/* Delete button hover effect */
+.delete:hover {
+    background-color: #CD5C5C;
+    /* Lighter red on hover */
+}
+
+/* Center header text */
+.table-container th {
+    text-align: center;
+}
+
+/* Column width for name */
+.name {
+    width: 180px;
+    /* Increased width for better readability */
+}

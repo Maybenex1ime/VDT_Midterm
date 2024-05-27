@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  react:
+    build: frontend
+    container_name: web
+    hostname: react
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    links:
+      - flask
+
+  flask:
+    build: api
+    container_name: flask
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - DB_URI=sqlite:///data/sqlite.db
+    depends_on:
+      - sqlite3
+
+  sqlite3:
+    image: keinos/sqlite3:latest
+    container_name: data
+    volumes:
+      - ./data:/data
