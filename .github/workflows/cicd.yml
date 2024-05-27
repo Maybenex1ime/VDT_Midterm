@@ -17,16 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-        uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Create fresh env to test
-        run: docker-compose -f docker-compose.yml up -d sqlite3
+      run: docker-compose -f docker-compose.yml up -d sqlite3
 
     - name: Install local dependencies
-        run: pip install -r /api/requirements.txt
+      run: pip install -r /api/requirements.txt
 
     - name: Run unit test
-        run: pytest api/text
-
- 
-        tags: maybenex1ime/git_cicd_api:latest
+      run: python api/tests.py
